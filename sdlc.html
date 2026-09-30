@@ -1,0 +1,1643 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>WebBloom AI | Smart Banking SDLC</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:"Segoe UI",Arial,sans-serif;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    background:
+        radial-gradient(circle at 10% 10%,rgba(255,105,180,.13),transparent 25%),
+        radial-gradient(circle at 90% 20%,rgba(190,150,255,.12),transparent 25%),
+        radial-gradient(circle at 50% 90%,rgba(255,70,160,.08),transparent 30%),
+        #180d1d;
+    color:#fff4fb;
+    min-height:100vh;
+    overflow-x:hidden;
+}
+
+/* FLOATING CHARMS */
+
+.charm{
+    position:fixed;
+    pointer-events:none;
+    z-index:1;
+    animation:float 6s ease-in-out infinite;
+    opacity:.8;
+}
+
+.charm.spider{
+    font-size:30px;
+}
+
+.charm.heart{
+    color:#ff75b9;
+    font-size:28px;
+}
+
+.charm.star{
+    color:#e7c8ff;
+    font-size:22px;
+}
+
+.charm.one{top:16%;left:2%;}
+.charm.two{top:42%;right:3%;animation-delay:1s;}
+.charm.three{top:72%;left:3%;animation-delay:2s;}
+.charm.four{top:25%;right:5%;animation-delay:3s;}
+.charm.five{top:82%;right:7%;animation-delay:4s;}
+
+@keyframes float{
+    0%,100%{transform:translateY(0) rotate(0deg);}
+    50%{transform:translateY(-15px) rotate(5deg);}
+}
+
+/* WEB DECORATION */
+
+.web{
+    position:fixed;
+    width:170px;
+    height:170px;
+    border:1px solid rgba(255,174,219,.18);
+    border-radius:50%;
+    z-index:0;
+    pointer-events:none;
+}
+
+.web:before,
+.web:after{
+    content:"";
+    position:absolute;
+    inset:15px;
+    border:1px solid rgba(255,174,219,.16);
+    border-radius:50%;
+}
+
+.web:after{
+    inset:42px;
+}
+
+.web.left{
+    top:80px;
+    left:-80px;
+}
+
+.web.right{
+    bottom:30px;
+    right:-80px;
+}
+
+.web-lines{
+    position:absolute;
+    inset:0;
+}
+
+.web-lines span{
+    position:absolute;
+    width:1px;
+    height:100%;
+    background:rgba(255,174,219,.13);
+    left:50%;
+}
+
+.web-lines span:nth-child(1){transform:rotate(45deg);}
+.web-lines span:nth-child(2){transform:rotate(90deg);}
+.web-lines span:nth-child(3){transform:rotate(135deg);}
+
+/* HEADER */
+
+header{
+    height:76px;
+    border-bottom:1px solid rgba(255,151,207,.2);
+    background:rgba(25,11,29,.88);
+    backdrop-filter:blur(18px);
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:0 6%;
+    position:sticky;
+    top:0;
+    z-index:100;
+}
+
+.logo{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    font-size:21px;
+    font-weight:800;
+}
+
+.logo-icon{
+    width:42px;
+    height:42px;
+    border-radius:14px;
+    background:linear-gradient(135deg,#ff4fa3,#b993ff);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    box-shadow:0 0 25px rgba(255,79,163,.35);
+    font-size:22px;
+}
+
+.logo span{
+    color:#ff72b6;
+}
+
+.ai-status{
+    display:flex;
+    align-items:center;
+    gap:9px;
+    color:#ff9bce;
+    font-size:12px;
+    font-weight:700;
+    letter-spacing:1px;
+}
+
+.pulse{
+    width:9px;
+    height:9px;
+    border-radius:50%;
+    background:#65f2c0;
+    box-shadow:0 0 15px #65f2c0;
+    animation:pulse 1.7s infinite;
+}
+
+@keyframes pulse{
+    0%,100%{opacity:1;}
+    50%{opacity:.35;}
+}
+
+/* HERO */
+
+.hero{
+    position:relative;
+    z-index:2;
+    padding:85px 8% 50px;
+    display:grid;
+    grid-template-columns:1.3fr .7fr;
+    gap:50px;
+    align-items:center;
+}
+
+.tag{
+    display:inline-block;
+    padding:8px 15px;
+    border:1px solid rgba(255,112,181,.45);
+    background:rgba(255,85,169,.08);
+    color:#ff9ed0;
+    border-radius:30px;
+    font-size:11px;
+    letter-spacing:1px;
+    margin-bottom:22px;
+}
+
+.hero h1{
+    font-size:clamp(45px,6vw,78px);
+    line-height:1;
+    letter-spacing:-3px;
+}
+
+.hero h1 span{
+    background:linear-gradient(90deg,#ff5aaa,#d6a9ff,#ff8ac7);
+    -webkit-background-clip:text;
+    color:transparent;
+}
+
+.hero p{
+    margin-top:23px;
+    color:#c5a9ba;
+    max-width:650px;
+    line-height:1.8;
+    font-size:16px;
+}
+
+.hero-panel{
+    border:1px solid rgba(255,137,199,.25);
+    background:linear-gradient(145deg,rgba(57,24,51,.9),rgba(28,15,35,.95));
+    padding:26px;
+    border-radius:25px;
+    box-shadow:0 25px 80px rgba(0,0,0,.35);
+    position:relative;
+    overflow:hidden;
+}
+
+.hero-panel:before{
+    content:"♥";
+    position:absolute;
+    right:20px;
+    top:12px;
+    font-size:45px;
+    color:rgba(255,102,177,.1);
+}
+
+.hero-panel-title{
+    color:#bda4b8;
+    font-size:11px;
+    text-transform:uppercase;
+    letter-spacing:2px;
+    margin-bottom:18px;
+}
+
+.metric{
+    display:flex;
+    justify-content:space-between;
+    padding:15px 0;
+    border-bottom:1px solid rgba(255,143,201,.12);
+}
+
+.metric:last-child{
+    border-bottom:none;
+}
+
+.metric span:first-child{
+    color:#b69aaa;
+}
+
+.metric strong{
+    color:#fff4fb;
+}
+
+/* WORKFLOW */
+
+.workflow{
+    position:relative;
+    z-index:2;
+    padding:25px 8% 55px;
+}
+
+.section-heading{
+    display:flex;
+    justify-content:space-between;
+    align-items:end;
+    margin-bottom:22px;
+}
+
+.section-heading h2{
+    font-size:28px;
+}
+
+.section-heading p{
+    color:#9d8496;
+    font-size:13px;
+}
+
+.phase-container{
+    display:grid;
+    grid-template-columns:repeat(7,1fr);
+    gap:10px;
+}
+
+.phase{
+    position:relative;
+    overflow:hidden;
+    background:rgba(39,19,43,.85);
+    border:1px solid rgba(255,132,195,.16);
+    padding:18px 13px;
+    border-radius:17px;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.phase:after{
+    content:"♡";
+    position:absolute;
+    right:8px;
+    bottom:2px;
+    font-size:22px;
+    color:rgba(255,104,179,.12);
+}
+
+.phase:hover{
+    transform:translateY(-5px);
+    border-color:#ff70b7;
+    background:rgba(66,28,60,.9);
+}
+
+.phase.active{
+    border-color:#ff62ae;
+    background:linear-gradient(145deg,#542544,#34203f);
+    box-shadow:0 0 25px rgba(255,82,166,.16);
+}
+
+.phase-number{
+    color:#ff74b8;
+    font-size:11px;
+    margin-bottom:9px;
+    font-weight:700;
+}
+
+.phase-name{
+    font-size:13px;
+    font-weight:700;
+}
+
+/* WORKSPACE */
+
+.workspace{
+    position:relative;
+    z-index:2;
+    padding:0 8% 80px;
+}
+
+.workspace-grid{
+    display:grid;
+    grid-template-columns:1.5fr .7fr;
+    gap:20px;
+}
+
+.main-card,
+.side-card,
+.architecture{
+    background:rgba(31,16,36,.9);
+    border:1px solid rgba(255,138,197,.18);
+    border-radius:22px;
+    box-shadow:0 20px 60px rgba(0,0,0,.2);
+}
+
+.main-card{
+    min-height:530px;
+    overflow:hidden;
+}
+
+.card-header{
+    padding:22px 25px;
+    border-bottom:1px solid rgba(255,138,197,.13);
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.card-header h3{
+    font-size:19px;
+}
+
+.phase-label{
+    color:#ff79bd;
+    font-size:11px;
+    font-weight:700;
+}
+
+.content{
+    padding:30px;
+}
+
+.content h2{
+    font-size:31px;
+    margin-bottom:10px;
+}
+
+.content>p{
+    color:#bca5b7;
+    line-height:1.7;
+    margin-bottom:25px;
+}
+
+/* DATA CARDS */
+
+.data-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:13px;
+}
+
+.data-item{
+    border:1px solid rgba(255,141,198,.15);
+    background:linear-gradient(145deg,rgba(57,26,51,.75),rgba(35,19,42,.85));
+    padding:19px;
+    border-radius:16px;
+    transition:.25s;
+}
+
+.data-item:hover{
+    transform:translateY(-3px);
+    border-color:rgba(255,111,184,.5);
+}
+
+.data-item .icon{
+    font-size:22px;
+    margin-bottom:12px;
+}
+
+.data-item h4{
+    font-size:14px;
+    margin-bottom:6px;
+}
+
+.data-item p{
+    color:#a88f9f;
+    font-size:12px;
+    line-height:1.5;
+}
+
+/* BUTTON */
+
+.simulate-btn{
+    margin-top:22px;
+    border:none;
+    padding:13px 21px;
+    border-radius:30px;
+    background:linear-gradient(90deg,#ff4fa5,#bb7fff);
+    color:white;
+    cursor:pointer;
+    font-weight:700;
+    box-shadow:0 8px 25px rgba(255,79,165,.2);
+    transition:.25s;
+}
+
+.simulate-btn:hover{
+    transform:translateY(-3px) scale(1.02);
+    box-shadow:0 12px 30px rgba(255,79,165,.35);
+}
+
+/* TERMINAL */
+
+.terminal{
+    margin-top:20px;
+    background:#100b15;
+    border:1px solid rgba(255,133,194,.15);
+    border-radius:15px;
+    overflow:hidden;
+}
+
+.terminal-top{
+    background:#211321;
+    padding:10px 15px;
+    display:flex;
+    gap:6px;
+}
+
+.dot{
+    width:8px;
+    height:8px;
+    border-radius:50%;
+    background:#704b65;
+}
+
+.terminal-body{
+    padding:18px;
+    font-family:Consolas,monospace;
+    font-size:12px;
+    line-height:1.8;
+    color:#ffacd7;
+}
+
+.terminal-body .muted{
+    color:#765d70;
+}
+
+.terminal-body .success{
+    color:#72edc1;
+}
+
+.terminal-body .warning{
+    color:#ffd276;
+}
+
+/* SIDE PANEL */
+
+.side-card{
+    padding:23px;
+}
+
+.side-card h3{
+    font-size:14px;
+    margin-bottom:20px;
+    letter-spacing:.5px;
+}
+
+.ai-box{
+    background:linear-gradient(145deg,rgba(65,27,57,.8),rgba(35,17,42,.9));
+    border:1px solid rgba(255,117,185,.2);
+    padding:18px;
+    border-radius:16px;
+    margin-bottom:20px;
+}
+
+.ai-box-title{
+    color:#ff77ba;
+    font-size:11px;
+    margin-bottom:12px;
+}
+
+.ai-box p{
+    color:#b79eaf;
+    font-size:12px;
+    line-height:1.7;
+}
+
+.activity{
+    padding:13px 0;
+    border-bottom:1px solid rgba(255,135,194,.1);
+    display:flex;
+    gap:11px;
+}
+
+.activity:last-child{
+    border-bottom:none;
+}
+
+.activity-dot{
+    width:7px;
+    height:7px;
+    margin-top:5px;
+    border-radius:50%;
+    background:#65eabe;
+    box-shadow:0 0 8px #65eabe;
+    flex-shrink:0;
+}
+
+.activity strong{
+    font-size:12px;
+    display:block;
+    margin-bottom:3px;
+}
+
+.activity small{
+    color:#80697b;
+    font-size:11px;
+}
+
+/* ARCHITECTURE */
+
+.architecture{
+    margin-top:20px;
+    padding:25px;
+}
+
+.architecture h3{
+    margin-bottom:22px;
+}
+
+.arch-flow{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    flex-wrap:wrap;
+    gap:8px;
+}
+
+.arch-box{
+    padding:15px 19px;
+    border:1px solid rgba(255,123,188,.28);
+    border-radius:13px;
+    background:linear-gradient(145deg,#3b1e3c,#24162d);
+    text-align:center;
+    min-width:125px;
+    transition:.25s;
+}
+
+.arch-box:hover{
+    transform:translateY(-4px);
+    border-color:#ff70b7;
+}
+
+.arch-box span{
+    display:block;
+    color:#997e91;
+    font-size:10px;
+    margin-top:5px;
+}
+
+.arrow{
+    color:#ff78ba;
+    font-size:20px;
+}
+
+/* FOOTER */
+
+footer{
+    position:relative;
+    z-index:2;
+    border-top:1px solid rgba(255,136,196,.15);
+    padding:27px 8%;
+    color:#765f71;
+    font-size:12px;
+    display:flex;
+    justify-content:space-between;
+}
+
+/* RESPONSIVE */
+
+@media(max-width:1000px){
+
+    .hero,
+    .workspace-grid{
+        grid-template-columns:1fr;
+    }
+
+    .phase-container{
+        grid-template-columns:repeat(4,1fr);
+    }
+}
+
+@media(max-width:650px){
+
+    header{
+        padding:0 20px;
+    }
+
+    .ai-status{
+        display:none;
+    }
+
+    .hero,
+    .workflow,
+    .workspace{
+        padding-left:5%;
+        padding-right:5%;
+    }
+
+    .hero{
+        padding-top:60px;
+    }
+
+    .phase-container{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .data-grid{
+        grid-template-columns:1fr;
+    }
+
+    .section-heading{
+        display:block;
+    }
+
+    .section-heading p{
+        margin-top:8px;
+    }
+
+    footer{
+        padding:20px;
+        flex-direction:column;
+        gap:8px;
+    }
+
+    .content{
+        padding:22px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- CUTE CHARMS -->
+
+<div class="charm spider one">🕷️</div>
+<div class="charm heart two">♥</div>
+<div class="charm star three">✦</div>
+<div class="charm heart four">♡</div>
+<div class="charm spider five">🕷️</div>
+
+<div class="web left">
+    <div class="web-lines">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+</div>
+
+<div class="web right">
+    <div class="web-lines">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+</div>
+
+
+<!-- HEADER -->
+
+<header>
+
+    <div class="logo">
+
+        <div class="logo-icon">
+            🕷️
+        </div>
+
+        <div>
+            WebBloom <span>AI</span>
+        </div>
+
+    </div>
+
+    <div class="ai-status">
+
+        <div class="pulse"></div>
+
+        AI ENGINE ONLINE
+
+    </div>
+
+</header>
+
+
+<!-- HERO -->
+
+<section class="hero">
+
+    <div>
+
+        <div class="tag">
+            🕷️ SOFTWARE DEVELOPMENT LIFECYCLE × AI
+        </div>
+
+        <h1>
+            Build a smarter<br>
+            <span>banking system.</span>
+        </h1>
+
+        <p>
+            Explore how Artificial Intelligence can support every stage
+            of the Software Development Life Cycle — from requirements
+            analysis to continuous production monitoring.
+        </p>
+
+    </div>
+
+
+    <div class="hero-panel">
+
+        <div class="hero-panel-title">
+            ♥ LIVE SYSTEM OVERVIEW
+        </div>
+
+        <div class="metric">
+            <span>System Status</span>
+            <strong style="color:#72edc1;">
+                Operational
+            </strong>
+        </div>
+
+        <div class="metric">
+            <span>AI Monitoring</span>
+            <strong>Active</strong>
+        </div>
+
+        <div class="metric">
+            <span>Transactions</span>
+            <strong>12,486</strong>
+        </div>
+
+        <div class="metric">
+            <span>Fraud Alerts</span>
+            <strong style="color:#ffd276;">
+                07
+            </strong>
+        </div>
+
+        <div class="metric">
+            <span>System Health</span>
+            <strong>98.7%</strong>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- SDLC WORKFLOW -->
+
+<section class="workflow">
+
+    <div class="section-heading">
+
+        <div>
+            <h2>🕷️ SDLC Workflow</h2>
+        </div>
+
+        <p>
+            Select a phase to simulate the development process
+        </p>
+
+    </div>
+
+
+    <div class="phase-container">
+
+        <div class="phase active" onclick="showPhase(0)">
+            <div class="phase-number">01</div>
+            <div class="phase-name">Requirements</div>
+        </div>
+
+        <div class="phase" onclick="showPhase(1)">
+            <div class="phase-number">02</div>
+            <div class="phase-name">Planning</div>
+        </div>
+
+        <div class="phase" onclick="showPhase(2)">
+            <div class="phase-number">03</div>
+            <div class="phase-name">Design</div>
+        </div>
+
+        <div class="phase" onclick="showPhase(3)">
+            <div class="phase-number">04</div>
+            <div class="phase-name">Development</div>
+        </div>
+
+        <div class="phase" onclick="showPhase(4)">
+            <div class="phase-number">05</div>
+            <div class="phase-name">Testing</div>
+        </div>
+
+        <div class="phase" onclick="showPhase(5)">
+            <div class="phase-number">06</div>
+            <div class="phase-name">Deployment</div>
+        </div>
+
+        <div class="phase" onclick="showPhase(6)">
+            <div class="phase-number">07</div>
+            <div class="phase-name">Maintenance</div>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- MAIN WORKSPACE -->
+
+<section class="workspace">
+
+    <div class="workspace-grid">
+
+        <!-- MAIN CARD -->
+
+        <div class="main-card">
+
+            <div class="card-header">
+
+                <h3 id="phaseTitle">
+                    AI Requirements Analysis
+                </h3>
+
+                <div class="phase-label" id="phaseLabel">
+                    PHASE 01
+                </div>
+
+            </div>
+
+
+            <div class="content">
+
+                <h2 id="mainHeading">
+                    Understand the banking problem
+                </h2>
+
+                <p id="mainDescription">
+                    AI analyses business requirements and converts them
+                    into functional modules for the digital banking platform.
+                </p>
+
+
+                <div class="data-grid" id="dataGrid">
+
+                    <div class="data-item">
+
+                        <div class="icon">👤</div>
+
+                        <h4>
+                            Customer Management
+                        </h4>
+
+                        <p>
+                            Secure customer profiles, account information
+                            and identity verification.
+                        </p>
+
+                    </div>
+
+
+                    <div class="data-item">
+
+                        <div class="icon">💳</div>
+
+                        <h4>
+                            Digital Payments
+                        </h4>
+
+                        <p>
+                            Enable UPI, card and account-to-account
+                            transactions.
+                        </p>
+
+                    </div>
+
+
+                    <div class="data-item">
+
+                        <div class="icon">🛡️</div>
+
+                        <h4>
+                            Fraud Detection
+                        </h4>
+
+                        <p>
+                            Identify unusual transaction patterns using AI.
+                        </p>
+
+                    </div>
+
+
+                    <div class="data-item">
+
+                        <div class="icon">🔐</div>
+
+                        <h4>
+                            Authentication
+                        </h4>
+
+                        <p>
+                            Multi-factor authentication and secure login
+                            requirements.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <button
+                    class="simulate-btn"
+                    onclick="runSimulation()"
+                >
+                    🕷️ Run AI Analysis
+                </button>
+
+
+                <!-- TERMINAL -->
+
+                <div class="terminal">
+
+                    <div class="terminal-top">
+
+                        <div class="dot"></div>
+                        <div class="dot"></div>
+                        <div class="dot"></div>
+
+                    </div>
+
+
+                    <div
+                        class="terminal-body"
+                        id="terminal"
+                    >
+
+                        <div class="muted">
+                            $ webbloom-ai --analyze requirements
+                        </div>
+
+                        <div>
+                            AI engine initialized...
+                        </div>
+
+                        <div class="success">
+                            ✓ 24 functional requirements identified
+                        </div>
+
+                        <div>
+                            ✓ 8 security requirements identified
+                        </div>
+
+                        <div class="success">
+                            ✓ Priority classification completed
+                        </div>
+
+                        <div class="muted">
+                            Analysis complete.
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- SIDE PANEL -->
+
+        <div class="side-card">
+
+            <h3>
+                🕷️ AI DEVELOPMENT AGENT
+            </h3>
+
+
+            <div class="ai-box">
+
+                <div class="ai-box-title">
+                    ● CURRENT ACTIVITY
+                </div>
+
+                <p id="aiMessage">
+                    Analysing banking requirements and identifying
+                    high-priority system modules.
+                </p>
+
+            </div>
+
+
+            <h3>
+                ACTIVITY STREAM
+            </h3>
+
+
+            <div class="activity">
+
+                <div class="activity-dot"></div>
+
+                <div>
+
+                    <strong>
+                        Requirement analysis
+                    </strong>
+
+                    <small>
+                        Completed 2 min ago
+                    </small>
+
+                </div>
+
+            </div>
+
+
+            <div class="activity">
+
+                <div class="activity-dot"></div>
+
+                <div>
+
+                    <strong>
+                        Security rules generated
+                    </strong>
+
+                    <small>
+                        Completed 4 min ago
+                    </small>
+
+                </div>
+
+            </div>
+
+
+            <div class="activity">
+
+                <div class="activity-dot"></div>
+
+                <div>
+
+                    <strong>
+                        Fraud model updated
+                    </strong>
+
+                    <small>
+                        Completed 7 min ago
+                    </small>
+
+                </div>
+
+            </div>
+
+
+            <div class="activity">
+
+                <div class="activity-dot"></div>
+
+                <div>
+
+                    <strong>
+                        Production monitoring
+                    </strong>
+
+                    <small>
+                        Running continuously
+                    </small>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- ARCHITECTURE -->
+
+    <div class="architecture">
+
+        <h3>
+            🕸️ System Architecture
+        </h3>
+
+        <div class="arch-flow">
+
+            <div class="arch-box">
+                Customer
+                <span>Mobile / Web</span>
+            </div>
+
+            <div class="arrow">
+                →
+            </div>
+
+            <div class="arch-box">
+                API Gateway
+                <span>Request Routing</span>
+            </div>
+
+            <div class="arrow">
+                →
+            </div>
+
+            <div class="arch-box">
+                Banking Core
+                <span>Transactions</span>
+            </div>
+
+            <div class="arrow">
+                →
+            </div>
+
+            <div class="arch-box">
+                Database
+                <span>Secure Storage</span>
+            </div>
+
+            <div class="arrow">
+                →
+            </div>
+
+            <div class="arch-box">
+                AI Engine
+                <span>Fraud Detection</span>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- FOOTER -->
+
+<footer>
+
+    <div>
+        🕷️ WebBloom AI • SDLC Simulation
+    </div>
+
+    <div>
+        AI-assisted software engineering ♥
+    </div>
+
+</footer>
+
+
+<script>
+
+const phases = [
+
+    {
+        title:"AI Requirements Analysis",
+
+        heading:"Understand the banking problem",
+
+        description:
+        "AI analyses business requirements and converts them into functional modules for the digital banking platform.",
+
+        items:[
+            [
+                "👤",
+                "Customer Management",
+                "Secure customer profiles, account information and identity verification."
+            ],
+            [
+                "💳",
+                "Digital Payments",
+                "Enable UPI, card and account-to-account transactions."
+            ],
+            [
+                "🛡️",
+                "Fraud Detection",
+                "Identify unusual transaction patterns using AI."
+            ],
+            [
+                "🔐",
+                "Authentication",
+                "Multi-factor authentication and secure login requirements."
+            ]
+        ],
+
+        message:
+        "Analysing banking requirements and identifying high-priority system modules."
+    },
+
+
+    {
+        title:"AI-Assisted Project Planning",
+
+        heading:"Plan the development lifecycle",
+
+        description:
+        "AI converts requirements into development tasks, estimates complexity and identifies potential project risks.",
+
+        items:[
+            [
+                "📋",
+                "Task Generation",
+                "Break requirements into development tasks."
+            ],
+            [
+                "⚡",
+                "Priority Analysis",
+                "Identify critical banking features first."
+            ],
+            [
+                "⏱️",
+                "Effort Estimation",
+                "Estimate development complexity."
+            ],
+            [
+                "⚠️",
+                "Risk Detection",
+                "Identify security and operational risks."
+            ]
+        ],
+
+        message:
+        "Generating development tasks and analysing project risks."
+    },
+
+
+    {
+        title:"Intelligent System Design",
+
+        heading:"Design the banking architecture",
+
+        description:
+        "The system architecture connects customers, APIs, banking services, databases and AI security services.",
+
+        items:[
+            [
+                "🌐",
+                "API Layer",
+                "Handles requests between applications and banking services."
+            ],
+            [
+                "🏦",
+                "Banking Core",
+                "Processes accounts, payments and transactions."
+            ],
+            [
+                "🗄️",
+                "Data Layer",
+                "Stores customer and transaction information securely."
+            ],
+            [
+                "🤖",
+                "AI Layer",
+                "Analyses transactions for fraud and anomalies."
+            ]
+        ],
+
+        message:
+        "Evaluating architecture and recommending secure service boundaries."
+    },
+
+
+    {
+        title:"AI-Assisted Development",
+
+        heading:"Build the banking modules",
+
+        description:
+        "Development teams implement the planned features while AI assists with code generation, debugging and documentation.",
+
+        items:[
+            [
+                "🔑",
+                "Authentication",
+                "Secure login and multi-factor authentication."
+            ],
+            [
+                "💰",
+                "Transactions",
+                "Transfer and payment processing."
+            ],
+            [
+                "📱",
+                "Banking Dashboard",
+                "Account balance and transaction history."
+            ],
+            [
+                "🤖",
+                "AI Fraud Engine",
+                "Real-time transaction risk analysis."
+            ]
+        ],
+
+        message:
+        "AI coding agent is assisting developers with banking modules."
+    },
+
+
+    {
+        title:"AI-Powered Testing",
+
+        heading:"Test real banking scenarios",
+
+        description:
+        "AI generates test cases and analyses transaction behaviour to identify functional, security and performance issues.",
+
+        items:[
+            [
+                "✓",
+                "Login Testing",
+                "Authentication scenarios verified."
+            ],
+            [
+                "✓",
+                "Payment Testing",
+                "Transaction calculations validated."
+            ],
+            [
+                "⚠",
+                "Fraud Scenario",
+                "Suspicious transaction detected."
+            ],
+            [
+                "✓",
+                "Performance Testing",
+                "API response within threshold."
+            ]
+        ],
+
+        message:
+        "Running automated test scenarios and analysing suspicious transactions."
+    },
+
+
+    {
+        title:"Production Deployment",
+
+        heading:"Move the system into production",
+
+        description:
+        "The tested banking platform is deployed to production infrastructure with continuous AI monitoring.",
+
+        items:[
+            [
+                "☁️",
+                "Cloud Infrastructure",
+                "Banking services deployed to scalable servers."
+            ],
+            [
+                "📡",
+                "API Monitoring",
+                "Real-time API health tracking."
+            ],
+            [
+                "👥",
+                "Active Users",
+                "Monitor customer activity."
+            ],
+            [
+                "🛡️",
+                "Security Monitoring",
+                "AI continuously scans for anomalies."
+            ]
+        ],
+
+        message:
+        "Production environment is live. AI monitoring is active."
+    },
+
+
+    {
+        title:"Continuous AI Maintenance",
+
+        heading:"Keep the banking system reliable",
+
+        description:
+        "AI continuously monitors the production system, detects anomalies and helps teams identify improvements.",
+
+        items:[
+            [
+                "📊",
+                "Performance",
+                "Monitor response times and system health."
+            ],
+            [
+                "🚨",
+                "Anomaly Detection",
+                "Identify unusual system behaviour."
+            ],
+            [
+                "🔒",
+                "Security Updates",
+                "Detect emerging security risks."
+            ],
+            [
+                "🔄",
+                "Optimization",
+                "Recommend system improvements."
+            ]
+        ],
+
+        message:
+        "Monitoring production behaviour and searching for optimization opportunities."
+    }
+
+];
+
+
+function showPhase(index){
+
+    const phaseButtons =
+        document.querySelectorAll(".phase");
+
+    phaseButtons.forEach((button,i)=>{
+
+        button.classList.toggle(
+            "active",
+            i === index
+        );
+
+    });
+
+
+    const data = phases[index];
+
+
+    document.getElementById(
+        "phaseTitle"
+    ).textContent = data.title;
+
+
+    document.getElementById(
+        "phaseLabel"
+    ).textContent =
+        "PHASE " +
+        String(index + 1).padStart(2,"0");
+
+
+    document.getElementById(
+        "mainHeading"
+    ).textContent = data.heading;
+
+
+    document.getElementById(
+        "mainDescription"
+    ).textContent = data.description;
+
+
+    document.getElementById(
+        "aiMessage"
+    ).textContent = data.message;
+
+
+    const grid =
+        document.getElementById("dataGrid");
+
+
+    grid.innerHTML = "";
+
+
+    data.items.forEach(item=>{
+
+        const card =
+            document.createElement("div");
+
+        card.className = "data-item";
+
+
+        card.innerHTML = `
+
+            <div class="icon">
+                ${item[0]}
+            </div>
+
+            <h4>
+                ${item[1]}
+            </h4>
+
+            <p>
+                ${item[2]}
+            </p>
+
+        `;
+
+
+        grid.appendChild(card);
+
+    });
+
+
+    document.getElementById(
+        "terminal"
+    ).innerHTML = `
+
+        <div class="muted">
+            $ webbloom-ai --run-phase ${index + 1}
+        </div>
+
+        <div>
+            AI agent initialized...
+        </div>
+
+        <div class="success">
+            ✓ Phase analysis started
+        </div>
+
+        <div>
+            ✓ Banking workflow analysed
+        </div>
+
+        <div class="success">
+            ✓ AI recommendations generated
+        </div>
+
+        <div class="muted">
+            Process complete.
+        </div>
+
+    `;
+}
+
+
+function runSimulation(){
+
+    const terminal =
+        document.getElementById("terminal");
+
+
+    terminal.innerHTML = `
+
+        <div class="muted">
+            $ webbloom-ai --live-analysis
+        </div>
+
+        <div>
+            Connecting to AI engine...
+        </div>
+
+    `;
+
+
+    setTimeout(()=>{
+
+        terminal.innerHTML += `
+
+            <div>
+                Analysing banking workflow...
+            </div>
+
+            <div class="success">
+                ✓ Customer behaviour analysed
+            </div>
+
+            <div class="success">
+                ✓ Security rules validated
+            </div>
+
+            <div class="warning">
+                ⚠ 1 suspicious transaction pattern detected
+            </div>
+
+            <div class="success">
+                ✓ Risk model recommendation generated
+            </div>
+
+            <div class="muted">
+                AI analysis complete.
+            </div>
+
+        `;
+
+    },1000);
+
+}
+
+</script>
+
+</body>
+</html>

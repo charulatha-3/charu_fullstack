@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calendar</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #fce4ec, #e8f5e9);
+        }
+
+        .calendar {
+            width: 420px;
+            background: #ffffff;
+            border-radius: 25px;
+            padding: 25px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
+        }
+
+        .calendar-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+
+        .calendar-header h1 {
+            font-size: 28px;
+            color: #5b4b5f;
+        }
+
+        .calendar-header p {
+            color: #999;
+            font-size: 14px;
+            margin-top: 5px;
+        }
+
+        .arrow {
+            width: 38px;
+            height: 38px;
+            border: none;
+            border-radius: 50%;
+            background: #f8dce8;
+            color: #5b4b5f;
+            font-size: 20px;
+        }
+
+        .weekdays,
+        .days {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 8px;
+            text-align: center;
+        }
+
+        .weekdays {
+            margin-bottom: 10px;
+        }
+
+        .weekdays div {
+            font-size: 13px;
+            font-weight: bold;
+            color: #9b899e;
+        }
+
+        .days div {
+            height: 45px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 14px;
+            color: #555;
+            font-size: 14px;
+        }
+
+        .days div:hover {
+            background: #f5e5ed;
+        }
+
+        .empty {
+            background: transparent !important;
+        }
+
+        .today {
+            background: #d8ead8;
+            color: #405840 !important;
+            font-weight: bold;
+        }
+
+        .special {
+            position: relative;
+        }
+
+        .special::after {
+            content: "•";
+            position: absolute;
+            bottom: 1px;
+            color: #d98ba8;
+            font-size: 18px;
+        }
+
+        .footer {
+            margin-top: 22px;
+            padding: 15px;
+            border-radius: 18px;
+            background: #faf3f6;
+            text-align: center;
+            color: #8a7580;
+            font-size: 13px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="calendar">
+
+        <div class="calendar-header">
+            <button class="arrow">‹</button>
+
+            <div>
+                <h1>September 2026</h1>
+                <p>Little moments, big memories ♡</p>
+            </div>
+
+            <button class="arrow">›</button>
+        </div>
+
+        <div class="weekdays">
+            <div>Sun</div>
+            <div>Mon</div>
+            <div>Tue</div>
+            <div>Wed</div>
+            <div>Thu</div>
+            <div>Fri</div>
+            <div>Sat</div>
+        </div>
+
+        <div class="days">
+            <div></div>
+            <div></div>
+            <div>1</div>
+            <div>2</div>
+            <div>3</div>
+            <div>4</div>
+            <div>5</div>
+
+            <div>6</div>
+            <div>7</div>
+            <div>8</div>
+            <div>9</div>
+            <div>10</div>
+            <div>11</div>
+            <div>12</div>
+
+            <div>13</div>
+            <div>14</div>
+            <div>15</div>
+            <div>16</div>
+            <div>17</div>
+            <div>18</div>
+            <div>19</div>
+
+            <div>20</div>
+            <div>21</div>
+            <div>22</div>
+            <div>23</div>
+            <div>24</div>
+            <div>25</div>
+            <div>26</div>
+
+            <div>27</div>
+            <div>28</div>
+            <div>29</div>
+            <div class="today">30</div>
+        </div>
+
+        <div class="footer">
+            🌷 Make today a beautiful one
+        </div>
+
+    </div>
+
+</body>
+</html>
